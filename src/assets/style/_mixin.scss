@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+$color-1: #2e7ae6;
+$color-2: #f4f6f6;
+
 // 浮动、清除浮动
 @mixin clearFix {
     &:after {
@@ -116,5 +119,118 @@
                 transform: scale(.5, 1);
             }
         }
+    }
+}
+
+.p-cell-item {
+    @include thinLine($useBefore: false, $position: 'bottom', $backgroundColor: #eee, $right: .3rem, $bottom: 0, $left: .3rem);
+    display: flex;
+    align-items: center;
+    padding: .3rem .3rem;
+    transition: all .3s;
+    user-select: none;
+
+    &:active {
+        background: #f3f3f3;
+    }
+    .icon-type {
+        @include iconfont;
+        font-size: .4rem;
+    }
+    .title {
+        width: 0;
+        flex-grow: 1;
+        margin: 0 .2rem;
+        font-size: .3rem;
+        color: #333;
+    }
+    .icon-arrow {
+        @include iconfont;
+        color: #eee;
+    }
+}
+.p-order-item {
+    @include thinLine($useBefore: true, $position: 'bottom', $backgroundColor: #eee, $top: 0, $right: .3rem, $bottom: 0, $left: .3rem);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: .3rem .3rem;
+    background: #fff;
+    transition: all .3s;
+
+    &:active {
+        background: #f3f3f3;
+    }
+    // status = “urge”;//催办
+    // status = “delay”;//延期
+    // status = “unread”;//草稿
+    // status = “processing”;//处理中
+    // status = “file”;//办结
+    &.urge {
+        &:after {
+            @include iconfont;
+            position: absolute;
+            top: 0; right: .3rem;
+            content: "\e651";
+            font-size: .8rem;
+            color: rgb(199, 50, 50);
+        }
+    }
+    &.delay {
+        &:after {
+            @include iconfont;
+            position: absolute;
+            top: 0; right: .3rem;
+            content: "\e649";
+            font-size: .8rem;
+            color: rgb(199, 50, 50);
+        }
+    }
+    &.unread {
+        &:after {
+            @include iconfont;
+            position: absolute;
+            top: 0; right: .3rem;
+            content: "\e64f";
+            font-size: .8rem;
+            color: rgb(199, 50, 50);
+        }
+    }
+    &.processing {
+        &:after {
+            @include iconfont;
+            position: absolute;
+            top: 0; right: .3rem;
+            content: "\e650";
+            font-size: .8rem;
+            color: rgb(199, 50, 50);
+        }
+    }
+    &.file {
+        &:after {
+            @include iconfont;
+            position: absolute;
+            top: 0; right: .3rem;
+            content: "\e64d";
+            font-size: .8rem;
+            color: rgb(199, 50, 50);
+        }
+    }
+    .text-wrap {
+        .order-name {
+            @include textEllipsis($type: 'multipleRows', $row: 1);
+            font-weight: bold;
+            color: $color-1;
+        }
+        .tips {
+            margin-top: .1rem;
+            margin-left: -.15rem;
+            color: #666;
+        }
+    }
+    time {
+        flex-shrink: 0;
+        font-size: .2rem;
+        color: #999;
     }
 }
